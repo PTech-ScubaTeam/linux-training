@@ -9,6 +9,7 @@ We are going to use Vagrant to create a ubuntu VM image that we can play with in
 vagrant up
 ```
 This will take a few minutes the first time you do this.
+
 3. Once the VM is created you can SSH into the VM by typing:
 ```
 vagrant ssh
