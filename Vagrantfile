@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
         sudo apt-get -y autoremove
 
         cd /vagrant
-        sudo pip install -r requirements.txt
+        #sudo pip install -r requirements.txt
 
     SHELL
 
