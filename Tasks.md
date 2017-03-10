@@ -147,3 +147,92 @@ ESC
 :wq
 ENTER
 ```
+
+Escape (ESC) takes the file out of insert mode. Colon enters a command and wq means “Write Quit”, ie, save the file and exit.
+
+Now, try to run the script. In linux you put a period (“./”) in front of the filename to run:
+
+```
+./test.sh declaration.txt
+```
+
+** Question 4: What message did you receive? **
+
+You should have received a permission denied error. The reason here is that linux thinks this file is a read/write text file and NOT an executable.
+
+```
+ls –l test.sh
+```
+
+lists the file with the –l or LONG option:
+
+```
+-rw- r-- r-- 1 vagrant staff 233 Jul 8 15:14 test.sh
+```
+
+Read about file permissions here:
+
+https://www.linux.com/learn/understanding-linux-file-permissions
+
+So, let’s tell it that the file is executable:
+
+```
+chmod u+x test.sh
+```
+
+The chmod (Change mode) command says: change mode of User’s permissions (u) and add executable (+x) to file test.sh. Now when we do ls –l we get:
+
+```
+-rwxr-- r-- 1 vagrant staff 233 Jul 8 15:14 test.sh
+```
+
+Notice now that the user’s (vagrant) permission for this file now has an “X” for allow execution. Now try to execute:
+
+```
+./test.sh declaration.txt
+```
+
+** Question 5: What’s the answer? **
+
+Let’s briefly go over the code in the shell script:
+
+```
+1 - #!/bin/bash
+2 - if [[ $# -eq 0 ]]
+3 - then
+4 -   echo "Usage: test.sh <filename>"
+5 -   echo "You did not supply a filename."
+6 - exit 1
+7 - fi
+8 - fn=$1
+9 - numWords=`wc -w $fn | xargs | cut -d ' ' -f 1`
+10 - echo "Number of words in $fn is: $numWords"
+11 - exit 0
+```
+
+Line 1 tells the OS that this is a bash shell script. (type echo $SHELL to see the shell you are using on any linux system)
+
+Line 2 tests the # of arguments from the command line $# to see if it is equal to (-eq) 0. Meaning that the user did not enter a filename after the program name.
+
+If the test is true then echo back to the user information on how to run the program (lines 4 and 5) then exit with a non zero exit code (line 6).
+
+Line 7 ends the if/then statement. Notice that with bash shell it uses a backwards if (fi) to end the statement.
+
+Line 8 assigns a variable *fn* to the 1st parameter ($1) passed to the program on the command line (ie, the filename)
+
+Line 9 assigns the variable numWords a command output of wc. Notice that backticks (\`) are used to extrapolate a command. Here the command is pretty complex. Do a wordcount on the given file (wc –w) and pipe ( | ) to xargs which removes any leading/trailing blanks then pipe ( | ) to the cut command which delimits the output by space (-d ‘ ‘) and then returns only the first field (-f 1).
+
+Line 10 prints out the number of words in the given file.
+
+Finally, line 11 exits the program.
+
+** EXERCISE 1: Write a shell script to output the first line of a given file as uppercase. **
+
+1. Make a copy of the test.sh file:
+  ```
+  cp test.sh upperCaseMe.sh 
+  ```
+2. Use TextMate or another editor on Mac to edit the file
+3. Using the head -1 and translate (tr [a-z] [A-Z]) commands together should help you figure it out. HINT: replace the code in between the backticks.
+4. Since we copied the file there is no need to change permissions since they came with the original file.
+5. Run the file against the declaration.txt file and save it to a file (./upperCaseMe.sh declaration.txt > line1.txt)
