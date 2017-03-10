@@ -48,13 +48,13 @@ TIP: type in part of a filename like “dec” and then hit the TAB key. Shell s
 Now, let’s echo the file to caps using pipes and translations:
 
 ```
-cat declaration-of-independence.txt | tr [a-z] [A-Z]
+cat declaration.txt | tr [a-z] [A-Z]
 ```
 
 Count the # of lines that contain the phrase “WE”:
 
 ```
-cat declaration-of-independence.txt | grep [wW]e | wc -l
+cat declaration.txt | grep [wW]e | wc -l
 ```
 
 grep (Global regular Expression Print) is probably the MOST powerful command in linux. It let’s you find patterns in files and streams. Above we take the output from displaying the file with the cat command and grep or search for the word “WE” using either capital or lowercase “w”.
@@ -66,7 +66,7 @@ Then we pipe that stream into wordcount to get the number of lines.
 Sort the lines (ignoring case –i) in the file (this doesn’t really make sense in this case):
 
 ```
-cat declaration-of-independence.txt | sort –i
+cat declaration.txt | sort –i
 ```
 
 Do the following:
@@ -74,20 +74,20 @@ Do the following:
 ```
 mkdir sandbox
 cd sandbox
-cp ../declaration-of-independence.txt .
+cp ../declaration.txt .
 ```
 
 Makes a new directory called sandbox then change into it. Then copy (cp) the \*.txt file into the new directory (the . at the end means current directory).
 
 ```
-head -10 declaration-of-independence.txt > part1.txt
-tail -10 declaration-of-independence.txt > part2.txt
+head -10 declaration.txt > part1.txt
+tail -10 declaration.txt > part2.txt
 ```
 
 Head looks at the –Nth number of lines at the beginning of a file, Tail the last –Nth elements (in this case 10 first and 10 last). The > redirects output to a new file, here part1.txt and part2.txt. Now let’s append some data to a file:
 
 ```
-head -11 declaration-of-independence.txt | tail -1 >> part1.txt
+head -11 declaration.txt | tail -1 >> part1.txt
 ```
 
 The >> operator will append contents to a file.
@@ -117,13 +117,13 @@ Let’s create a (bash shell) script to print out the # of words in a file.  Cop
 
 if [[ $# -eq 0 ]]
 then
-  echo "Usage: test.sh < filename > "
+  echo "Usage: test.sh <filename> "
   echo "You did not supply a filename."
   exit 1
 fi
 
 fn=$1
-numWords=`wc -w $fn | xargs | cut -d &#39; &#39; -f 1`
+numWords=`wc -w $fn | xargs | cut -d ' ' -f 1`
 
 echo "Number of words in $fn is: $numWords"
 
