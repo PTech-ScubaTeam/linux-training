@@ -43,7 +43,7 @@ wc declaration-of- independence.txt
 
 TIP: type in part of a filename like “dec” and then hit the TAB key. Shell should automatically complete to declaration-of- independence.txt *wc* stands for Word Count. By itself it lists the lines, words and characters in a file.
 
-** Question 1: For this file, type the # ______ lines, # _____ words, #________ characters **
+**Question 1: For this file, type the # ______ lines, # _____ words, #________ characters**
 
 Now, let’s echo the file to caps using pipes and translations:
 
@@ -61,7 +61,7 @@ grep (Global regular Expression Print) is probably the MOST powerful command in 
 
 Then we pipe that stream into wordcount to get the number of lines.
 
-** Question 2: # of lines containing WE: _____________ **
+**Question 2: # of lines containing WE: _____________**
 
 Sort the lines (ignoring case –i) in the file (this doesn’t really make sense in this case):
 
@@ -92,7 +92,7 @@ head -11 declaration.txt | tail -1 >> part1.txt
 
 The >> operator will append contents to a file.
 
-** Question 3: What do you now expect to see in the part1.txt file? **
+**Question 3: What do you now expect to see in the part1.txt file?**
 
 Rename our files using the move command (mv):
 
@@ -156,7 +156,7 @@ Now, try to run the script. In linux you put a period (“./”) in front of the
 ./test.sh declaration.txt
 ```
 
-** Question 4: What message did you receive? **
+**Question 4: What message did you receive?**
 
 You should have received a permission denied error. The reason here is that linux thinks this file is a read/write text file and NOT an executable.
 
@@ -226,11 +226,11 @@ Line 10 prints out the number of words in the given file.
 
 Finally, line 11 exits the program.
 
-** EXERCISE 1: Write a shell script to output the first line of a given file as uppercase. **
+**EXERCISE 1: Write a shell script to output the first line of a given file as uppercase.**
 
 1. Make a copy of the test.sh file:
   ```
-  cp test.sh upperCaseMe.sh 
+  cp test.sh upperCaseMe.sh
   ```
 2. Use TextMate or another editor on Mac to edit the file
 3. Using the head -1 and translate (tr [a-z] [A-Z]) commands together should help you figure it out. HINT: replace the code in between the backticks.
