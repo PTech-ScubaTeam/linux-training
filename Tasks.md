@@ -1,9 +1,29 @@
 ### Linux Tasks
 
-Try the following on your Mac (Open Terminal). Remember linux is CASE SENSITIVE so you need to be exact.
+We'll use vagrant here to play with linux.  Issue the following command in the directory where your Vagrantfile is located:
 
 ```
-cd ~/Documents
+vagrant up
+```
+
+after a minute when Vagrant is done downloading the appropriate box you can issue:
+
+```
+vagrant ssh
+```
+
+You are now in the shell of our virtual machine.  To prove it:
+```
+uname -a
+```
+
+You should see:  *Linux vagrant-ubuntu-trusty-64 3.13.0-110-generic \#157-Ubuntu SMP Mon Feb 20 11:54:05 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux*
+
+
+Now lets change to our mounted host directory mapped to /vagrant:
+
+```
+cd /vagrant
 ls *.txt
 ```
 
